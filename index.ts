@@ -21,29 +21,30 @@ app.use(express.json());
 // here we are adding middleware to allow cross-origin requests
 app.use(cors());
 
-const loggerOptions: expressWinston.LoggerOptions = {
-  transports: [new winston.transports.Console()],
-  format: winston.format.combine(
-    winston.format.json(),
-    winston.format.prettyPrint(),
-    winston.format.colorize({ all: true })
-  ),
-};
+// const loggerOptions: expressWinston.LoggerOptions = {
+//   transports: [new winston.transports.Console()],
+//   format: winston.format.combine(
+//     winston.format.json(),
+//     winston.format.prettyPrint(),
+//     winston.format.colorize({ all: true })
+//   ),
+// };
 
-if (!process.env.DEBUG) {
-  loggerOptions.meta = false; // when not debugging, log requests as one-liners
-}
+// if (!process.env.DEBUG) {
+//   loggerOptions.meta = false; // when not debugging, log requests as one-liners
+// }
 
-app.use(expressWinston.logger(loggerOptions));
+// app.use(expressWinston.logger(loggerOptions));
 
 // here we are adding the UserRoutes to our array,
-routes.push(new UsersRoutes(app));
 
 // this is a simple route to make sure everything is working properly
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server + Typeorm");
 });
+
+routes.push(new UsersRoutes(app));
 
 app.listen(port, () => {
   routes.forEach((route: CommonRoutesConfig) => {
