@@ -15,7 +15,7 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-// createConnection(ORMConfig);
+createConnection(ORMConfig);
 app.use(express.json());
 
 // here we are adding middleware to allow cross-origin requests

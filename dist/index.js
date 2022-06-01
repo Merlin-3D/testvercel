@@ -32,11 +32,13 @@ const winston = __importStar(require("winston"));
 const expressWinston = __importStar(require("express-winston"));
 const cors_1 = __importDefault(require("cors"));
 const user_route_1 = require("./src/common/user-route");
+const connect_1 = __importDefault(require("./src/common/db/connect"));
+const typeorm_1 = require("typeorm");
 const routes = [];
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
-// createConnection(ORMConfig);
+(0, typeorm_1.createConnection)(connect_1.default);
 app.use(express_1.default.json());
 // here we are adding middleware to allow cross-origin requests
 app.use((0, cors_1.default)());
