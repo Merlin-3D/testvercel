@@ -31,13 +31,13 @@ app.use((0, cors_1.default)());
 // app.use(expressWinston.logger(loggerOptions));
 // here we are adding the UserRoutes to our array,
 // this is a simple route to make sure everything is working properly
+routes.push(new user_route_1.UsersRoutes(app));
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server + Typeorm");
 });
-routes.push(new user_route_1.UsersRoutes(app));
+routes.forEach((route) => {
+    // debugLog(`Routes configured for ${route.getName()}`);
+});
 app.listen(port, () => {
-    routes.forEach((route) => {
-        // debugLog(`Routes configured for ${route.getName()}`);
-    });
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
