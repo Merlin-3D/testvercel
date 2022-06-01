@@ -59,9 +59,7 @@ data_source_1.AppDataSource.initialize()
         loggerOptions.meta = false;
     }
     app.use(expressWinston.logger(loggerOptions));
-    // here we are adding the UserRoutes to our array,
     routes.push(new user_route_1.UsersRoutes(app));
-    // this is a simple route to make sure everything is working properly
     app.get("/", (req, res) => {
         res.send("Express + TypeScript Server + Typeorm");
     });
