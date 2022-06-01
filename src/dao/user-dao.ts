@@ -1,19 +1,19 @@
-import { getRepository } from "typeorm";
+import { DataSource, EntityManager } from "typeorm";
 import { UserRequestDto } from "../dto/user-dto";
 import { User } from "../entity/User";
+import { AppDataSource } from "../utils/data-source";
 
 class UsersDao {
   users: Array<UserRequestDto> = [];
-
+  appData: EntityManager = AppDataSource.manager;
   constructor() {}
 
   async addUser(userFields: UserRequestDto) {
-    const userRepo = getRepository(User);
     const user = new User();
     user.email = userFields.email!;
     user.name = userFields.name!;
     user.password = userFields.password!;
-    await userRepo.save(user);
+    await this.appData.save(user);
     return user;
   }
 

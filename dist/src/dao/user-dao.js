@@ -9,20 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
 const User_1 = require("../entity/User");
+const data_source_1 = require("../utils/data-source");
 class UsersDao {
     constructor() {
         this.users = [];
+        this.appData = data_source_1.AppDataSource.manager;
     }
     addUser(userFields) {
         return __awaiter(this, void 0, void 0, function* () {
-            const userRepo = (0, typeorm_1.getRepository)(User_1.User);
             const user = new User_1.User();
             user.email = userFields.email;
             user.name = userFields.name;
             user.password = userFields.password;
-            yield userRepo.save(user);
+            yield this.appData.save(user);
             return user;
         });
     }
